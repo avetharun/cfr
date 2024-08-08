@@ -11,12 +11,12 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.studiopulsar.feintha.cfr.client.CompatFrameworkModClient",
-      "com.studiopulsar.feintha.cfr.dpu.client.DatapackUtilsClient"
+      "com.studiopulsar.feintha.cfr1.client.CompatFrameworkModClient",
+      "com.studiopulsar.feintha.cfr1.dpu.client.DatapackUtilsClient"
     ],
     "main": [
-      "com.studiopulsar.feintha.cfr.CompatFrameworkMod",
-      "com.studiopulsar.feintha.cfr.dpu.DatapackUtils"
+      "com.studiopulsar.feintha.cfr.CFR",
+      "com.studiopulsar.feintha.cfr1.dpu.DatapackUtils"
     ]
   },
   "mixins": [

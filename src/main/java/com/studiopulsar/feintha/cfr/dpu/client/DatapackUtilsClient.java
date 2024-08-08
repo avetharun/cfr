@@ -4,22 +4,10 @@ import com.studiopulsar.feintha.cfr.dpu.client.ModelOverrides.BooleanModelOverri
 import com.studiopulsar.feintha.cfr.dpu.client.ModelOverrides.IntModelOverride;
 import com.studiopulsar.feintha.cfr.dpu.client.ModelOverrides.StringModelOverride;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.ClampedModelPredicateProvider;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
 
 public class DatapackUtilsClient implements ClientModInitializer {
     public static int currentInventorySlot = -1;

@@ -1,6 +1,5 @@
 package com.studiopulsar.feintha.cfr.utils;
 
-import com.mojang.datafixers.util.Pair;
 import com.studiopulsar.feintha.cfr.alib;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;

@@ -2,25 +2,19 @@ package com.studiopulsar.feintha.cfr.dpu.mixin;
 
 import com.google.gson.JsonParser;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.studiopulsar.feintha.cfr.alib;
 import com.studiopulsar.feintha.cfr.dpu.client.ModelOverrides.StringModelOverride;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelOverride;
 import net.minecraft.client.render.model.json.ModelOverrideList;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.component.ComponentMap;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ModelOverrideList.class)
 public abstract class ModelOverrideListMixin {
