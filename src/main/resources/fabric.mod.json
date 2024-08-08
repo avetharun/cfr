@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "cfr",
+  "version": "${version}",
+  "name": "CompatFramework",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "LGPL-3.0",
+  "icon": "assets/cfr/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.studiopulsar.feintha.cfr.client.CompatFrameworkModClient",
+      "com.studiopulsar.feintha.cfr.dpu.client.DatapackUtilsClient"
+    ],
+    "main": [
+      "com.studiopulsar.feintha.cfr.CompatFrameworkMod",
+      "com.studiopulsar.feintha.cfr.dpu.DatapackUtils"
+    ]
+  },
+  "mixins": [
+    "cfr.mixins.json",
+    "dpu.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "accessWidener": "cfr.accesswidener"
+}

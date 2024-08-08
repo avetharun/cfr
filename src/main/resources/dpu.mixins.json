@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.studiopulsar.feintha.cfr.dpu.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+  ],
+  "client": [
+    "ItemRendererMixin",
+    "ItemRendererMixin$InGameHudMixin",
+    "ItemRendererMixin$InventoryRendererMixin",
+    "JsonUnbakedModelMixin",
+    "JsonUnbakedModelMixin$BasicBakedModelDeserializerMixin",
+    "JsonUnbakedModelMixin$JsonUnbakedModel_DeserializerMixin",
+    "ModelOverrideDeserializerMixin",
+    "ModelOverrideListMixin",
+    "ModelOverrideMixin",
+    "ModelPredicateProviderRegistryMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
