@@ -1,15 +1,10 @@
 package com.studiopulsar.feintha.cfr;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import com.mojang.serialization.JsonOps;
-import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,23 +14,17 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.poi.PointOfInterestType;
-import net.minecraft.world.poi.PointOfInterestTypes;
-import org.apache.commons.lang3.function.TriConsumer;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import org.jetbrains.annotations.NotNull;
@@ -316,10 +305,10 @@ public class alib {
     }
 
     public static NbtCompound json2NBT(JsonObject jsonObject) {
-        return NbtCompound.CODEC.parse(JsonOps.INSTANCE, jsonObject).getOrThrow();
+        return NbtCompound.CODEC.parse(JsonOps.INSTANCE, jsonObject).result().get();
     }
     public static JsonObject NBT2json(NbtCompound nbtCompound) {
-        return (JsonObject) NbtCompound.CODEC.encodeStart(JsonOps.INSTANCE, nbtCompound).getOrThrow();
+        return (JsonObject) NbtCompound.CODEC.encodeStart(JsonOps.INSTANCE, nbtCompound).result().get();
     }
 
     public static <T> void runMixinMethod(T mixinType, String methodName, Object... args) {
@@ -415,9 +404,9 @@ public class alib {
         return ((crc << 32) | adl) + crc << 8;
     }
     public static boolean stackCustomModelDataEquals(@NotNull ItemStack stack, int data) {
-        if (!stack.contains(DataComponentTypes.CUSTOM_MODEL_DATA)) {return false;}
+        if (!stack.getOrCreateNbt().contains("CustomModelData")) {return false;}
         //noinspection DataFlowIssue
-        return stack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value() == data;
+        return stack.getOrCreateNbt().getInt("CustomModelData") == data;
     }
     public static long getHash64(String s) {
         return getHash64(s.getBytes(StandardCharsets.UTF_8));

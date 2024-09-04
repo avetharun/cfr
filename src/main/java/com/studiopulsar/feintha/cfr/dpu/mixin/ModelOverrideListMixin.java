@@ -5,16 +5,17 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.studiopulsar.feintha.cfr.alib;
 import com.studiopulsar.feintha.cfr.dpu.client.ModelOverrides.StringModelOverride;
+import com.studiopulsar.feintha.cfr.utils.ItemStackHelper;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelOverride;
 import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ModelOverrideList.class)
 public abstract class ModelOverrideListMixin {
@@ -42,7 +43,7 @@ public abstract class ModelOverrideListMixin {
                     }
                     if (stringCondition.value.startsWith("{") && stringCondition.value.endsWith("}")) {
                         NbtCompound c1 = alib.json2NBT(JsonParser.parseString(stringCondition.value).getAsJsonObject());
-                        original |= alib.checkNBTEquals(c1, (NbtCompound) stack.encode(alib.getWrapperLookupForRegistry(Registries.ITEM)));
+                        original |= alib.checkNBTEquals(c1, ItemStackHelper.SerializeToNBT(stack));
                     }
                 }
             }

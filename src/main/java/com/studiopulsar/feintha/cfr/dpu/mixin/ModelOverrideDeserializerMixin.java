@@ -1,6 +1,8 @@
 package com.studiopulsar.feintha.cfr.dpu.mixin;
+
 import com.google.common.collect.Maps;
-import com.google.gson.*;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.studiopulsar.feintha.cfr.dpu.client.DatapackUtilsClient;
 import com.studiopulsar.feintha.cfr.dpu.client.ModelOverrides.StringModelOverride;
 import net.fabricmc.api.EnvType;
@@ -42,13 +44,13 @@ public class ModelOverrideDeserializerMixin {
             if (JsonHelper.isBoolean(stringJsonElementEntry.getValue())) {
                 boolean s = JsonHelper.asBoolean(stringJsonElementEntry.getValue(), stringJsonElementEntry.getKey());
                 float v = s ? DatapackUtilsClient.BOOLEAN_TRUE_CONSTANT : 0;
-                conds.add(new ModelOverride.Condition(Identifier.of(stringJsonElementEntry.getKey()), v));
+                conds.add(new ModelOverride.Condition(new Identifier(stringJsonElementEntry.getKey()), v));
                 continue;
             } else if (JsonHelper.isString(stringJsonElementEntry.getValue())) {
-                conds.add(new StringModelOverride.StringModelOverrideCondition(Identifier.of(stringJsonElementEntry.getKey()), JsonHelper.asString(stringJsonElementEntry.getValue(), stringJsonElementEntry.getKey())));
+                conds.add(new StringModelOverride.StringModelOverrideCondition(new Identifier(stringJsonElementEntry.getKey()), JsonHelper.asString(stringJsonElementEntry.getValue(), stringJsonElementEntry.getKey())));
                 continue;
             }
-            conds.add(new ModelOverride.Condition(Identifier.of(stringJsonElementEntry.getKey()), JsonHelper.asFloat(stringJsonElementEntry.getValue(), stringJsonElementEntry.getKey())));
+            conds.add(new ModelOverride.Condition(new Identifier(stringJsonElementEntry.getKey()), JsonHelper.asFloat(stringJsonElementEntry.getValue(), stringJsonElementEntry.getKey())));
             i++;
         }
         cir.setReturnValue (conds);
